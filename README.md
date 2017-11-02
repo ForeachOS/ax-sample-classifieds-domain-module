@@ -1,0 +1,1 @@
+# ax-sample-classifieds-domain-module
