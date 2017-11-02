@@ -9,7 +9,7 @@
     <property name="table.demo_classified" value="demo_classified"/>
     <property name="table.demo_seller" value="demo_seller"/>
 
-    <include file="com/foreach/across/core/installers/AcrossSequencesInstaller" />
+    <include file="com/foreach/across/core/installers/AcrossSequencesInstaller.xml"/>
 
     <changeSet id="201406141719" author="arne" runAlways="true" dbms="oracle">
         <sql>

@@ -11,13 +11,14 @@ import com.foreach.across.core.annotations.Installer;
 import com.foreach.across.core.annotations.InstallerMethod;
 import com.foreach.across.core.installers.InstallerPhase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.thymeleaf.util.ArrayUtils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -190,12 +191,8 @@ public class ClassifiedInstaller {
     }
 
     private void getRelatedEntities() {
-        if (sellers.isEmpty()) {
-            sellers = sellerRepository.findAll();
-        }
-        if (ArrayUtils.isEmpty( status )) {
-            status = Status.values();
-        }
+        sellers = sellerRepository.findAll();
+        status = Status.values();
     }
 
     private Status getRandomStatus() {
