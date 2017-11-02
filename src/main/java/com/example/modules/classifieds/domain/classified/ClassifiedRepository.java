@@ -15,7 +15,7 @@ import java.util.List;
 public interface ClassifiedRepository extends JpaRepository<Classified, Long>, JpaSpecificationExecutor<Classified> {
     List<Classified> findAllByCategory(Category category);
 
-    List<Classified> findAllBySellerEquals(Seller seller);
+    List<Classified> findAllBySeller(Seller seller);
 
     List<Classified> findAllByCategoryOrderByIdDesc(Category category);
 
