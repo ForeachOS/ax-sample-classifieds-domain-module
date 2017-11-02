@@ -1,1 +1,1 @@
-# ax-sample-classifieds-domain-module
+# demo-devoxx-2017-entities
