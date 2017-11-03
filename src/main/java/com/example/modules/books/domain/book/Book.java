@@ -1,7 +1,7 @@
-package com.example.modules.classifieds.domain.classified;
+package com.example.modules.books.domain.book;
 
-import com.example.modules.classifieds.domain.category.Category;
-import com.example.modules.classifieds.domain.seller.Seller;
+import com.example.modules.books.domain.author.Author;
+import com.example.modules.books.domain.genre.Genre;
 import com.foreach.across.modules.hibernate.id.AcrossSequenceGenerator;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,16 +23,16 @@ import java.util.Date;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Setter
-@Table(name="demo_classified")
+@Table(name = "demo_book")
 @Builder(toBuilder = true)
-public class Classified implements Persistable<Long> {
+public class Book implements Persistable<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_cm_classified_id")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_cm_book_id")
     @GenericGenerator(
-            name = "seq_cm_classified_id",
+            name = "seq_cm_book_id",
             strategy = AcrossSequenceGenerator.STRATEGY,
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequenceName", value = "seq_cm_classified_id"),
+                    @org.hibernate.annotations.Parameter(name = "sequenceName", value = "seq_cm_book_id"),
                     @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1")
             }
     )
@@ -41,17 +41,17 @@ public class Classified implements Persistable<Long> {
     @Column
     @NotBlank
     @Length(max = 255)
-    private String name;
+    private String title;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @JoinColumn(name = "genre_id")
+    private Genre genre;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     @Column
     @Length(max = 2000)
@@ -60,8 +60,8 @@ public class Classified implements Persistable<Long> {
     @Column
     private Status status;
 
-    @Column(name="available_after")
-    private Date availableAfter;
+    @Column(name = "publication_date")
+    private Date publicationDate;
 
     @NotNull
     @Min( value = 0 )

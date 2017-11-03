@@ -1,4 +1,4 @@
-package com.example.modules.classifieds.domain.seller;
+package com.example.modules.books.domain.author;
 
 import com.foreach.across.modules.hibernate.id.AcrossSequenceGenerator;
 import lombok.*;
@@ -17,16 +17,16 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 @Setter
-@Table(name = "demo_seller")
+@Table(name = "demo_author")
 @Builder(toBuilder = true)
-public class Seller implements Persistable<Long> {
+public class Author implements Persistable<Long> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_cm_seller_id")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_cm_author_id")
     @GenericGenerator(
-            name = "seq_cm_seller_id",
+            name = "seq_cm_author_id",
             strategy = AcrossSequenceGenerator.STRATEGY,
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequenceName", value = "seq_cm_seller_id"),
+                    @org.hibernate.annotations.Parameter(name = "sequenceName", value = "seq_cm_author_id"),
                     @org.hibernate.annotations.Parameter(name = "allocationSize", value = "1")
             }
     )

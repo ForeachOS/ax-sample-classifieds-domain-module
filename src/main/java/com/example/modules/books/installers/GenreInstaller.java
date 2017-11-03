@@ -1,7 +1,7 @@
-package com.example.modules.classifieds.installers;
+package com.example.modules.books.installers;
 
-import com.example.modules.classifieds.domain.category.Category;
-import com.example.modules.classifieds.domain.category.CategoryRepository;
+import com.example.modules.books.domain.genre.Genre;
+import com.example.modules.books.domain.genre.GenreRepository;
 import com.foreach.across.core.annotations.Installer;
 import com.foreach.across.core.annotations.InstallerMethod;
 import com.foreach.across.core.installers.InstallerPhase;
@@ -17,13 +17,13 @@ import java.util.List;
 @Order(1)
 @Installer(description = "Installs a number of categories", phase = InstallerPhase.AfterModuleBootstrap)
 @RequiredArgsConstructor
-public class CategoryInstaller {
+public class GenreInstaller {
 
-    private final CategoryRepository categoryRepository;
+    private final GenreRepository genreRepository;
 
     @InstallerMethod
     private void installCategories() {
-        List<String> names = Arrays.asList( "Sports & Gear", "Music & Instruments", "Electronics" );
-        names.stream().map( name -> Category.builder().name( name ).build() ).forEach( categoryRepository::save );
+        List<String> names = Arrays.asList( "Mystery", "Drama", "Fantasy" );
+        names.stream().map( name -> Genre.builder().name( name ).build() ).forEach( genreRepository::save );
     }
 }

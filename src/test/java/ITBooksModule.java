@@ -1,10 +1,10 @@
-import com.example.modules.classifieds.ClassifiedsModule;
-import com.example.modules.classifieds.domain.category.Category;
-import com.example.modules.classifieds.domain.category.CategoryRepository;
-import com.example.modules.classifieds.domain.classified.Classified;
-import com.example.modules.classifieds.domain.classified.ClassifiedRepository;
-import com.example.modules.classifieds.domain.seller.Seller;
-import com.example.modules.classifieds.domain.seller.SellerRepository;
+import com.example.modules.books.BooksModule;
+import com.example.modules.books.domain.author.Author;
+import com.example.modules.books.domain.author.AuthorRepository;
+import com.example.modules.books.domain.book.Book;
+import com.example.modules.books.domain.book.BookRepository;
+import com.example.modules.books.domain.genre.Genre;
+import com.example.modules.books.domain.genre.GenreRepository;
 import com.foreach.across.modules.hibernate.jpa.AcrossHibernateJpaModule;
 import com.foreach.across.test.AcrossTestConfiguration;
 import org.junit.Test;
@@ -25,40 +25,40 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
 @ContextConfiguration
-public class ITClassifiedsModule {
+public class ITBooksModule {
 
     @Autowired
-    private ClassifiedRepository classifiedRepository;
+    private BookRepository bookRepository;
 
     @Autowired
-    private SellerRepository sellerRepository;
+    private AuthorRepository authorRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private GenreRepository genreRepository;
 
     @Test
     public void classifiedsShouldBeInstalled() {
-        List<Classified> classifieds = classifiedRepository.findAll();
-        assertEquals( 9, classifieds.size() );
+        List<Book> books = bookRepository.findAll();
+        assertEquals( 9, books.size() );
     }
 
     @Test
     public void categoriesShouldBeInstaller() {
-        List<Category> categories = categoryRepository.findAll();
+        List<Genre> categories = genreRepository.findAll();
         assertEquals( 3, categories.size() );
     }
 
     @Test
     public void sellersShouldBeInstalled() {
-        List<Seller> sellers = sellerRepository.findAll();
-        assertEquals( 6, sellers.size() );
+        List<Author> authors = authorRepository.findAll();
+        assertEquals( 8, authors.size() );
     }
 
     @AcrossTestConfiguration(modules = {AcrossHibernateJpaModule.NAME})
     protected static class Config {
         @Bean
-        public ClassifiedsModule classifiedsModule() {
-            return new ClassifiedsModule();
+        public BooksModule classifiedsModule() {
+            return new BooksModule();
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.modules.classifieds.domain;
+package com.example.modules.books.domain;
 
 /**
  * @author Steven Gentens

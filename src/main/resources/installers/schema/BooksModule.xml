@@ -5,9 +5,9 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <property name="table.demo_category" value="demo_category"/>
-    <property name="table.demo_classified" value="demo_classified"/>
-    <property name="table.demo_seller" value="demo_seller"/>
+    <property name="table.demo_genre" value="demo_genre"/>
+    <property name="table.demo_book" value="demo_book"/>
+    <property name="table.demo_author" value="demo_author"/>
 
     <include file="com/foreach/across/core/installers/AcrossSequencesInstaller.xml"/>
 
@@ -20,15 +20,15 @@
     <changeSet id="201711021309" author="stg">
         <preConditions>
             <not>
-                <tableExists tableName="${table.demo_category}"/>
+                <tableExists tableName="${table.demo_genre}"/>
             </not>
         </preConditions>
 
-        <comment>Creates category table</comment>
+        <comment>Creates genre table</comment>
 
-        <createTable tableName="${table.demo_category}">
+        <createTable tableName="${table.demo_genre}">
             <column name="id" type="java.sql.Types.BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_category"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_genre"/>
             </column>
             <column name="name" type="java.sql.Types.NVARCHAR(255)">
                 <constraints nullable="false"/>
@@ -39,15 +39,15 @@
     <changeSet id="201711021316" author="stg">
         <preConditions>
             <not>
-                <tableExists tableName="${table.demo_seller}"/>
+                <tableExists tableName="${table.demo_author}"/>
             </not>
         </preConditions>
 
-        <comment>Creates seller table</comment>
+        <comment>Creates author table</comment>
 
-        <createTable tableName="${table.demo_seller}">
+        <createTable tableName="${table.demo_author}">
             <column name="id" type="java.sql.Types.BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_seller"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_author"/>
             </column>
             <column name="name" type="java.sql.Types.NVARCHAR(255)">
                 <constraints nullable="false"/>
@@ -62,32 +62,34 @@
     <changeSet id="201711021320" author="stg">
         <preConditions>
             <not>
-                <tableExists tableName="${table.demo_classified}"/>
+                <tableExists tableName="${table.demo_book}"/>
             </not>
         </preConditions>
 
-        <comment>Creates classifieds table</comment>
+        <comment>Creates books table</comment>
 
-        <createTable tableName="${table.demo_classified}">
+        <createTable tableName="${table.demo_book}">
             <column name="id" type="java.sql.Types.BIGINT">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_classified"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_demo_book"/>
             </column>
-            <column name="name" type="java.sql.Types.NVARCHAR(255)">
+            <column name="title" type="java.sql.Types.NVARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="description" type="java.sql.Types.CLOB"/>
             <column name="status" type="java.sql.Types.VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="available_after" type="java.sql.Types.DATETIME"/>
+            <column name="publication_date" type="java.sql.Types.DATETIME"/>
             <column name="price" type="java.sql.Types.DECIMAL">
                 <constraints nullable="false"/>
             </column>
-            <column name="category_id" type="java.sql.Types.BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_demo_classified_category" referencedTableName="${table.demo_category}" referencedColumnNames="id"/>
+            <column name="genre_id" type="java.sql.Types.BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_demo_book_genre"
+                             referencedTableName="${table.demo_genre}" referencedColumnNames="id"/>
             </column>
-            <column name="seller_id" type="java.sql.Types.BIGINT">
-                <constraints nullable="false" foreignKeyName="fk_demo_classified_seller" referencedTableName="${table.demo_seller}" referencedColumnNames="id"/>
+            <column name="author_id" type="java.sql.Types.BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_demo_book_author"
+                             referencedTableName="${table.demo_author}" referencedColumnNames="id"/>
             </column>
         </createTable>
     </changeSet>

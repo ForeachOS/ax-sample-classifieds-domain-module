@@ -1,6 +1,6 @@
-package com.example.modules.classifieds.config;
+package com.example.modules.books.config;
 
-import com.example.modules.classifieds.domain.Domain;
+import com.example.modules.books.domain.Domain;
 import com.foreach.across.modules.hibernate.jpa.repositories.config.EnableAcrossJpaRepositories;
 import org.springframework.context.annotation.Configuration;
 
